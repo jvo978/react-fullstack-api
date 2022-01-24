@@ -9,7 +9,8 @@ router.get("/", validateToken, async (req, res) => {
     const likedPosts = await Likes.findAll({
         where: {
             UserId: req.user.id
-        }
+        },
+        order: [['updatedAt', 'DESC']]
     })
     res.json({listOfPosts: listOfPosts, likedPosts: likedPosts })
 })
